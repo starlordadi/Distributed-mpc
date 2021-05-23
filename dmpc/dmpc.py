@@ -10,6 +10,7 @@ class DMPC(object):
 		self.n = n
 		self.d = d
 		self.horizon = horizon
+		self.plot_data = []
 
 	def set_params(self):
 		# rho
@@ -67,6 +68,16 @@ class DMPC(object):
 			k = k+1
 
 		# plot optimal solution
+		data_t = []
+		for i in range(self.n_agents):
+			temp = [[] for k in range(2)]
+			for j in range(self.horizon+1):
+				temp[0].append(self.z_average[(i*(self.horizon+1)*self.n)+(j*self.n)])
+				temp[1].append(self.z_average[(i*(self.horizon+1)*self.n)+(j*self.n)+1])
+				# temp[2].append(self.z_average[(i*(self.horizon+1)*self.n)+(j*self.n)+2])
+			data_t.append(temp)
+
+		self.plot_data.append(data_t)
 
 		# color = ['red', 'blue', 'green', 'black']
 
